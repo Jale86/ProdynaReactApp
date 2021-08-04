@@ -15,6 +15,8 @@ const App = () => {
     const baseURL = "http://jsonplaceholder.typicode.com/posts";
 
     const [items, setItemData] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
 
      //Izvlacenje postova iz fila
      useEffect(() =>{
@@ -34,6 +36,17 @@ const App = () => {
     setItemData(newCopyItem);
     };
 
+    const searchHandler = (searchTerm) => {
+        setSearchTerm(searchTerm);
+        if(searchTerm !==""){
+            const newItemList = items.filter((item)=>{
+                return Object.values(item).join(" ").toLowerCase().includes(searchTerm.toLowerCase());
+            });
+            setSearchResults(newItemList);
+        } else{
+            setSearchResults(items);
+        }
+    };
     // const retrieveItems = async () => {
     //     const response = await api;
     //     return response.data;
@@ -83,7 +96,9 @@ const App = () => {
         <div className="App">
           <Navbar/>
           <AddItem addItemHandler={addItemHandler}/>
-          <ItemList deleteItem={deleteItem} items={items} />
+          <ItemList deleteItem={deleteItem} 
+            items={searchTerm.length < 1 ? items : searchResults} 
+            searchTerm={searchTerm} searchKeyword={searchHandler}/>
         </div>
 
     )

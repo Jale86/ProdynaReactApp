@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useRef } from "react";
 //import axios from "axios";
 //import Accordion from 'react-bootstrap/Accordion'
 //import AddItem from "./AddItem";
@@ -7,6 +7,7 @@ import ItemAccordion from "./ItemAccordion";
 const ItemList = (props) =>{
     console.log(props);
 
+    const inputEl = useRef("");
     
     const deleteItem =(id) =>{
         props.deleteItem(id);
@@ -17,6 +18,11 @@ const ItemList = (props) =>{
           <ItemAccordion deleteItem={deleteItem} item={item} key={item.id}/>
         );
       });
+
+     const getSearchTerm = () =>{
+         props.searchKeyword(inputEl.current.value)
+       
+     }
 
     // const baseURL = "http://jsonplaceholder.typicode.com/posts";
 
@@ -54,6 +60,15 @@ const ItemList = (props) =>{
 
     return(
        <div className="container-fluid mt-3">
+            <div className="search">
+                <input 
+                ref={inputEl}
+                type="text" 
+                placeholder="search" 
+                value={props.searchTerm} 
+                onChange={getSearchTerm}/>
+            </div>
+
            <h3>Items List</h3>   
            {renderItemList}           
                       
