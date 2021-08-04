@@ -7,9 +7,14 @@ import ItemAccordion from "./ItemAccordion";
 const ItemList = (props) =>{
     console.log(props);
 
+    
+    const deleteItem =(id) =>{
+        props.deleteItem(id);
+    }
+
     const renderItemList = props.items.map((item) => {
         return (
-          <ItemAccordion item={item} key={item.id}/>
+          <ItemAccordion deleteItem={deleteItem} item={item} key={item.id}/>
         );
       });
 

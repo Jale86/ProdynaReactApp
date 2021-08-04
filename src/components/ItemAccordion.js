@@ -3,6 +3,10 @@ import Accordion from 'react-bootstrap/Accordion';
 
 const ItemAccordion = (props) => {
 
+    const deleteItem =(id) =>{
+        props.deleteItem(id);
+    }
+
     return (
     
         <Accordion >
@@ -11,6 +15,7 @@ const ItemAccordion = (props) => {
             <Accordion.Body>
                 {props.item.body}
             </Accordion.Body>
+            <button onClick={()=>deleteItem(props.item.id)} className="btn btn-warning">Remove from list</button>
             </Accordion.Item>  
         </Accordion>
     )
