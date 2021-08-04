@@ -18,30 +18,34 @@ class AddItem extends Component {
 
   render() {
     return (
-      <div className="ui main">
+      <div className="container-fluid mt-3">
         <h2>Add Item</h2>
-        <form className="ui form" onSubmit={this.add}>
-          <div className="field">
-            <label>Title</label>
-            <input
-              type="text"
-              name="title"
-              placeholder="titile"
-              value={this.state.title}
-              onChange={(e) => this.setState({ title: e.target.value })}
-            />
-          </div>
-          <div className="field">
-            <label>Body</label>
-            <input
-              type="text"
-              name="body"
-              placeholder="Body"
-              value={this.state.body}
-              onChange={(e) => this.setState({ body: e.target.value })}
-            />
-          </div>
-          <button className="button">Add</button>
+        <form onSubmit={this.add}>
+    
+            <div className="form-group">
+                <label>Title</label>
+                <input
+                 className="form-control"
+                type="text"
+                name="title"
+                placeholder="titile"
+                value={this.state.title}
+                onChange={(e) => this.setState({ title: e.target.value })}
+                />
+            </div>
+            <div className="form-group">
+                <label>Body</label>
+                <input
+                className="form-control"
+                type="text"
+                name="body"
+                placeholder="Body"
+                value={this.state.body}
+                onChange={(e) => this.setState({ body: e.target.value })}
+                />
+            </div>
+            
+          <button className="btn btn-primary mt-3">Add</button>
         </form>
       </div>
     );
