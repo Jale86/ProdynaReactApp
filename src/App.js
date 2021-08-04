@@ -37,9 +37,9 @@ const App = () => {
     //   }, []);
     
 
-    useEffect(() => {  
+    // useEffect(() => {  
       
-      }, [items]);
+    //   }, [items]);
 
       const addItemHandler = async (item) => {
         const request = {

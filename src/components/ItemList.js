@@ -24,27 +24,12 @@ const ItemList = (props) =>{
     //     });
     // }, []);
 
-    // useEffect(() => {
-       
-    //     const article = { title: 'React Hooks POST Request Example' };
-    //     axios.post(baseURL, article)
-    //         .then(response => setArticleId(response.data.id));
-    // }, []);
 
     // const addItemHandler = (item) => {
     //     console.log(items);
     //     setItemData([...items, { id:"", ...item }]);
     //   };
 
-    // const addItemHandler = async (item) => {
-    //     const request = {
-    //         id: "",
-    //         ...items,
-    //     };
-    //     const response = axios.get(baseURL,request);
-    //     console.log(items);
-    //     setItemData([...items, response.data]);
-    //   };
 
     // const allItems = items.map(item=>{
     //     return (
