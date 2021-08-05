@@ -21,15 +21,16 @@ const App = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     
-    useEffect(() => {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 2500);
-      })
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //       setIsLoading(false);
+    //     }, 2500);
+    //   })
 
      //Izvlacenje postova iz fila
      useEffect(() =>{
         axios.get(baseURL).then((response) =>{
+            setIsLoading(false);
             setItemData(response.data)
         });
     }, []);
