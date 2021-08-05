@@ -9,14 +9,23 @@ import { useState,useEffect } from "react";
 import api from "./api/itemsApi";
 import AddItem from "./components/AddItem";
 import axios from "axios";
+import Loading from './components/Loading';
 
 const App = () => {
+    const LOCAL_STORAGE_KEY = "contacts";
    
     const baseURL = "http://jsonplaceholder.typicode.com/posts";
 
     const [items, setItemData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    
+    useEffect(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2500);
+      })
 
      //Izvlacenje postova iz fila
      useEffect(() =>{
@@ -47,6 +56,17 @@ const App = () => {
             setSearchResults(items);
         }
     };
+    useEffect(() => {  
+        const retriveItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+        if (retriveItems) setItemData(retriveItems);
+      }, []);
+
+     useEffect(() => {  
+        localStorage.setItem(LOCAL_STORAGE_KEY,JSON.stringify(items));
+     }, [items]);
+
+    
+
     // const retrieveItems = async () => {
     //     const response = await api;
     //     return response.data;
@@ -95,10 +115,13 @@ const App = () => {
 
         <div className="App">
           <Navbar/>
+
           <AddItem addItemHandler={addItemHandler}/>
-          <ItemList deleteItem={deleteItem} 
-            items={searchTerm.length < 1 ? items : searchResults} 
-            searchTerm={searchTerm} searchKeyword={searchHandler}/>
+
+            {isLoading==true ?  <Loading/> :
+            <ItemList deleteItem={deleteItem} items={searchTerm.length < 1 ? items : searchResults} 
+            searchTerm={searchTerm} searchKeyword={searchHandler}/> 
+            }
         </div>
 
     )
