@@ -15,7 +15,11 @@ const ItemList = (props) =>{
 
     const renderItemList = props.items.map((item) => {
         return (
-          <ItemAccordion deleteItem={deleteItem} item={item} key={item.id}/>
+            <div>
+                 <h3 className="mt-3">Items List</h3>  
+                 <ItemAccordion deleteItem={deleteItem} item={item} key={item.id}/> 
+            </div>
+         
         );
       });
 
@@ -64,12 +68,12 @@ const ItemList = (props) =>{
                 <input 
                 ref={inputEl}
                 type="text" 
-                placeholder="search" 
+                placeholder="Search item" 
                 value={props.searchTerm} 
                 onChange={getSearchTerm}/>
             </div>
 
-           <h3>Items List</h3>   
+          
            {renderItemList}           
                       
        </div>

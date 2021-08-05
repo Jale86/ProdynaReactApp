@@ -10,6 +10,7 @@ import api from "./api/itemsApi";
 import AddItem from "./components/AddItem";
 import axios from "axios";
 import Loading from './components/Loading';
+import {Route,BrowserRouter,Switch} from "react-router-dom";
 
 const App = () => {
     const LOCAL_STORAGE_KEY = "contacts";
@@ -115,14 +116,24 @@ const App = () => {
     return (
 
         <div className="App">
-          <Navbar/>
+       
+            <BrowserRouter>
+            <Navbar/>
+                <Route path="/" exact>
+                    {isLoading==true ?  <Loading/> :
+                    <ItemList deleteItem={deleteItem} items={searchTerm.length < 1 ? items : searchResults} 
+                    searchTerm={searchTerm} searchKeyword={searchHandler}/> 
+                    }
+                </Route>
 
-          <AddItem addItemHandler={addItemHandler}/>
+                <Route path="/add">
+                    <AddItem addItemHandler={addItemHandler}/>
+                </Route>
+        
+             </BrowserRouter>
+         
 
-            {isLoading==true ?  <Loading/> :
-            <ItemList deleteItem={deleteItem} items={searchTerm.length < 1 ? items : searchResults} 
-            searchTerm={searchTerm} searchKeyword={searchHandler}/> 
-            }
+            
         </div>
 
     )
